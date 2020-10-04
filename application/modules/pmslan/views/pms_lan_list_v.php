@@ -3,7 +3,6 @@
 	<section class="content-header">
 		<h1>
 			PMS LAN
-			<?php echo $this->session->userdata('name_uker'); ?><nbsp></nbsp>
 		</h1>
 	</section>
     <section class="content">
@@ -11,7 +10,37 @@
 			<div id="result" class="box-body">
 				<div class="container-fluid control-box">
 				</div>
+
+				<script>
+					$(document).ready(function() {
+						$('#table-pmslan').DataTable({
+							"processing": true,
+							"serverSide": true,
+							"deferRender": true,
+							"ajax": {
+								"url": "./pmslan/get_pmslan",
+								"type": "POST"
+							},
+
+						});
+					});
+				</script>
+
 				<div class="table-responsive">
+					<table id="table-pmslan" class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>No</th>
+								<th>Kebutuhan</th>
+								<th>Request By</th>
+								<th>SIK</th>
+								<th>Status</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					<table>
 				</div>
 			</div>
 		</div>
@@ -58,8 +87,8 @@
 				<h5 class="modal-title">Form Pertanyaan</h5>
 			</div>
 			<div class="modal-body">
-        <div id="mod-content">            
-        </div>
+				<div id="mod-content">            
+				</div>
 			</div>
 		</div>
 	</div>

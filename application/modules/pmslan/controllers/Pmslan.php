@@ -28,9 +28,6 @@ class Pmslan extends MX_Controller {
 		
 		////load all data depedencies on this module////
 		$this->load->model('pmslan_m');
-		$data['breadcrumb'][0] = 'Portal Isd';
-		$data['breadcrumb'][1] = 'Report PMS LAN ';
-		$data['headboard'] = 'Module Report PMS LAN';
 		$data['navbar'] = 'navbar';
 		$data['sidebar'] = 'sidebar';
 		$data['footer'] = 'footer';
@@ -66,8 +63,29 @@ class Pmslan extends MX_Controller {
 			}
 	}
 	////////////////////////////// GET ALL DATA///////////////////////////////
-	public function get_tarikan($id){
-		return $this->pmslan_m->get_tarikan_m($id);
+	public function get_pmslan(){
+		$list = $this->pmslan_m->get_listpmslan();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list->result_array() as $field) {
+			$action="";
+			$no++;
+			$row = array();
+			$row[] = $no;
+			$row[] = $field['keterangan_surat_masuk'];
+			$row[] = $field['unit_kerja'];
+			$row[] = $field['nomor_SIK'];
+			$row[] = $field['status_SIK'];
+			$row[] = $action;
+			$data[] = $row;
+		}
+		$output = array(
+			"draw" => $_POST['draw'],
+			"recordsTotal" => $list->num_rows(),
+			"recordsFiltered" => $this->pmslan_m->count_pmslan(),
+			"data" => $data,
+		);
+		echo json_encode($output);
 	}
 	
 	///////////////////////// GET DATA FOR UPDATE IF YOU WANT/////////////////////

@@ -2,6 +2,57 @@
 
 class Pmslan_m extends CI_Model 
 {
+
+	/////////////////////////new PMS LAN module //////////////////
+
+	var $column_search_pmslan = array(	'keterangan_surat_masuk',
+										'nomor_SIK',
+										'unit_kerja',
+										'nomor_surat_masuk'
+);
+	var $order_pmslan = array('timestamp' => 'desc');
+
+	public function get_listpmslan($status = null, $appr = 0)
+	{
+		$sql  = $this->get_tablepmslan($status, $appr);
+		$sql .= "  LIMIT " . ($_POST['start'] != 0 ? $_POST['start'] . ', ' : '') . " " . ($_POST['length'] != 0 ? $_POST['length'] : '200');
+		return $this->db->query($sql);
+	}
+
+	
+	public function get_tablepmslan($status = null, $appr = 0)
+	{
+		$i = 0;
+		$sql = "select * from pms_lan ";
+		
+		// if ($appr=1) $sql .= " approve ====="; //buat filter status approve
+
+		if ($_POST['search']['value'] != "") $sql .= " where ";
+		foreach ($this->column_search_pmslan as $item) // looping awal
+		{
+			if ($_POST['search']['value'] != "") // jika datatable mengirimkan pencarian dengan metode POST
+			{
+				if ($i === 0) // looping awal
+				{
+					$sql .= ' (' . $item . ' LIKE "%' . $_POST['search']['value'] . '%" ESCAPE "!" ';
+				} else {
+					$sql .= ' OR ' . $item . ' LIKE "%' . $_POST['search']['value'] . '%" ESCAPE "!" ';
+				}
+				if (count($this->column_search_pmslan) - 1 == $i)
+					$sql .= " ) ";
+			}
+			$i++;
+		}
+		return $sql;
+	}
+
+	public function count_pmslan()
+	{
+		$sql  = $this->get_tablepmslan();
+		return  $this->db->query($sql)->num_rows();
+	}
+
+	////////////////////////////////////////////////////////////////////
 		
 	public function select_all(){
 		$sql="SELECT a.*, b.USERNAME from pms_lan a
