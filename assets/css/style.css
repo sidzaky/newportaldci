@@ -1,0 +1,93 @@
+/* Loader
+*--------------------------------*/
+
+.select {
+  margin-bottom: 15px;
+}
+
+.control-box {
+  margin-bottom: 15px;
+}
+
+.form-group.required .control-label:after {
+  content: "*";
+  color: red;
+}
+
+.content-header > h1 {
+  float: left;
+  margin-right: 15px;
+}
+
+.content {
+  clear: left;
+}
+
+.searchTable {
+  margin-bottom: 10px;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.control-label {
+  font-weight: 600;
+}
+
+.modal-title {
+  font-weight: bold;
+  color: #5d5d5d;
+}
+
+.modal-header {
+  background: whitesmoke;
+  border-bottom-color: #e4e4e4;
+}
+
+.modal-footer {
+  background: whitesmoke;
+  border-top-color: #e4e4e4;
+}
+
+.center-wrapper {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+/* Cluster Info */
+.info-heading {
+  text-align: center;
+}
+
+.list-space {
+  padding: 8px 0 5px;
+}
+
+/* Dashboard */
+.section-heading {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.section-heading > img {
+  width: 50px;
+  height: auto;
+  margin-right: 1rem;
+}
+
+.section-heading > .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cluster-needs-list {
+  padding: 1em;
+}
+
+.cluster-needs-list .row {
+  padding: 0.5em 0;
+  font-size: 16px;
+}
