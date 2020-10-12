@@ -69,27 +69,27 @@
 <div class="col-md-12">
 	<div class="form-group required">
 	<button class="btn btn-success waves-effect waves-light btn-sm" onclick="formact()" type="button"><i class="fa fa-plus"></i> Tambah</button>
-		<table id="table-pmslan" class="table table-striped table-bordered" width="100%">
+		<table id="table-pmslan" class="table-striped table-bordered" width="100%">
 			<thead>
 				<tr>
-					<th rowspan="2">No</th>
+					<th style="width:2%" rowspan="2">No</th>
 					<th colspan="5" align="center">koordinat 1</th>
 					<th colspan="5" align="center">Koordinat 2</th>
 					<th rowspan="2">Label</th>
 					<th rowspan="2">Keterangan</th>
-					<th rowspan="2">Action</th>
+					<th style="width: 2%" rowspan="2">Action</th>
 				</tr>
 				<tr>
-					<th>Room1</th>
-					<th>koor1</th>
-					<th>RU1</th>
-					<th>Port1</th>
-					<th>Type1</th>
-					<th>Room2</th>
-					<th>Koor2</th>
-					<th>RU2</th> 
-					<th>Port2</th>
-					<th>Type2</th>
+					<th style="width: 17%">ROOM</th>
+					<th style="width: 5%">KOOR</th>
+					<th style="width: 5%">RU</th>
+					<th style="width: 6%">PORT</th>
+					<th style="width: 5%">TYPE</th>
+					<th style="width: 17%">ROOM</th>
+					<th style="width: 5%">KOOR</th>
+					<th style="width: 5%">RU</th> 
+					<th style="width: 6%">PORT</th>
+					<th style="width: 5%">TYPE</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -103,30 +103,30 @@
 	var ct=0;
 
 	function formact() {
-		var room1='<select id="room1_'+ct+'">';
-		var	room2='<select id="room2_'+ct+'">';
+		var room1='<select class="form-control" id="room1_'+ct+'">';
+		var	room2='<select class="form-control" id="room2_'+ct+'">';
 		var address="./pmslan/get_room";
 		var data1={'asset_dc' : $('#asset_dc').val()};
 		var room = sendajaxreturn(data1,address,'json');
 		for (var i=0;i<room.length;i++){
-			room1 +='<option value="'+room[i].kode +'"> '+room[i]['keterangan']+'</option>';
-			room2 +='<option value="'+room[i]['kode'] +'"> '+room[i]['keterangan']+'</option>';
+			room1 +='<option value="'+room[i].kode +'"> '+room[i].keterangan+'</option>';
+			room2 +='<option value="'+room[i].kode +'"> '+room[i].keterangan+'</option>';
 		}
 		room1 +='</select>';
 		room2 +='</select>';
 		$("#table-pmslan").find('tbody').append(`<tr id='tr_`+ct+`'><td>`+ (ct+1) +`</td>
 													<td>`+room1+`</td>
-													<td><input type="text" pattern="[a-zA-Z]" class="form-control required" id="koordinata_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" pattern="[a-zA-Z]" class="form-control required" id="ua_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" pattern="[a-zA-Z]" class="form-control required" id="porta_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" pattern="[a-zA-Z]" class="form-control required" id="konektora_`+ct+`" value="" placeholder="required" required></td>
+													<td><input type="text" class="form-control required" id="koordinata_`+ct+`" value="" placeholder="required" required></td>
+													<td><input type="text" class="form-control required" id="ua_`+ct+`" value="" placeholder="required" required></td>
+													<td><input type="text" class="form-control required" id="porta_`+ct+`" value="" placeholder="required" required></td>
+													<td><input type="text" class="form-control required" id="konektora_`+ct+`" value="" placeholder="required" required></td>
 													<td>`+room2+`</td>
-													<td><input type="text" pattern="[a-zA-Z]" class="form-control required" id="koordinatb_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" pattern="[a-zA-Z]" class="form-control required" id="ub_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" pattern="[a-zA-Z]" class="form-control required" id="portb_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" pattern="[a-zA-Z]" class="form-control required" id="konektorb_`+ct+`" value="" placeholder="required" required></td>
-													<td></td>
-													<td><input type="text" pattern="[a-zA-Z]" class="form-control required" id="keterangan_`+ct+`" value="" placeholder="required" required></td>
+													<td><input type="text" class="form-control required" id="koordinatb_`+ct+`" value="" placeholder="required" required></td>
+													<td><input type="text" class="form-control required" id="ub_`+ct+`" value="" placeholder="required" required></td>
+													<td><input type="text" class="form-control required" id="portb_`+ct+`" value="" placeholder="required" required></td>
+													<td><input type="text" class="form-control required" id="konektorb_`+ct+`" value="" placeholder="required" required></td>
+													<td>GN41.H11.13.fe 0/19 - GN41.C4.24.fe 0/10</td>
+													<td><input type="text" class="form-control required" id="keterangan_`+ct+`" value="" placeholder="required" required></td>
 													<td><button class="btn btn-warning waves-effect waves-light btn-sm" onclick="minform('`+ ct +`');" type="button"><i class="fa fa-close"></i></button></td></tr>`);
 		ct++;
 		}
