@@ -11,7 +11,7 @@
             </div>
         </div>
     </footer>
-
+	<script src="/pdci/assets/js/send.js"></script>
     <!-- jQuery -->
 	<?php if ($this->session->userdata('notif') == 1) { 
 	

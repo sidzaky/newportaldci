@@ -53,7 +53,7 @@ class Pmslan_m extends CI_Model
 	}
 
 	////////////////////////////////////////////////////////////////////
-		
+	
 	public function select_all(){
 		$sql="SELECT a.*, b.USERNAME from pms_lan a
 			  left join user b on b.ID =a.user_set_status_SIK
@@ -246,6 +246,18 @@ class Pmslan_m extends CI_Model
 			  status_SIK='Done' and status_by_case is null and kategori='pms_lan' and
 			  tanggal_surat_masuk BETWEEN '".date("Y-m-d" , strtotime($_POST['date1']))."' AND '".date("Y-m-d" , strtotime($_POST['date2']))."'";
 		return $this->db->query($sql)->result_array();
+	}
+
+
+	public function get_room_m(){
+		$sql="select * from asset_dc_area_new where active=1 and id_asset_dc='".$_POST['asset_dc']."'";
+		return $this->db->query($sql)->result_array();
+
+	}
+
+	public function get_assetdc_m(){
+		$sql="select * from asset_dc";
+		return  $this->db->query($sql)->result_array();
 	}
     
 
