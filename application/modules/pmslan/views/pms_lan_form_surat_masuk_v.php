@@ -68,7 +68,8 @@
 </div>
 <div class="col-md-12">
 	<div class="form-group required">
-		<table id="table-pmslan" class="table table-striped table-bordered">
+	<button class="btn btn-success waves-effect waves-light btn-sm" onclick="formact()" type="button"><i class="fa fa-plus"></i> Tambah</button>
+		<table id="table-pmslan" class="table table-striped table-bordered" width="100%">
 			<thead>
 				<tr>
 					<th rowspan="2">No</th>
@@ -76,7 +77,7 @@
 					<th colspan="5" align="center">Koordinat 2</th>
 					<th rowspan="2">Label</th>
 					<th rowspan="2">Keterangan</th>
-					<th rowspan="2">Action </br><button class="btn btn-success waves-effect waves-light btn-sm" onclick="formact()" type="button"><i class="fa fa-plus"></i> Tambah</button></th>
+					<th rowspan="2">Action</th>
 				</tr>
 				<tr>
 					<th>Room1</th>
@@ -98,6 +99,7 @@
 </div>
 
 <script>
+
 	var ct=0;
 
 	function formact() {

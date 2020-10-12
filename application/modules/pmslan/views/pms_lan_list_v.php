@@ -10,7 +10,7 @@
 			<div id="result" class="box-body">
 				<div class="container-fluid control-box">
 				<script></script>
-				<button class="btn btn-success waves-effect waves-light btn-sm" onclick="getform()" type="button"><i class="fa fa-plus"></i> Tambah Data</button>
+				<button class="btn btn-success waves-effect waves-light btn-sm" data-toggle="offcanvas" onclick="getform()" type="button"><i class="fa fa-plus"></i> Tambah Data</button>
 				</div>
 
 				<script>
