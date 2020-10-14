@@ -64,52 +64,73 @@ class Pmslan_m extends CI_Model
 	
 	public function input_request_tarikan_m(){
 		$message="update new PMSlan Request";
-		if ($_POST['surat']['id_pms_lan']==null){
+		if ($_POST['surat']['id_pms_lan']==""){
 			$_POST['surat']['id_pms_lan']=substr($this->uuid->v4(),(rand(2, 4)*(-1)))."PMSin".substr($this->uuid->v4(),(rand(4, 5)*(-1)));
 			$message="input new PMSlan Request";
 		}
 		
 		$_POST['surat']['user_input']=$this->session->userdata('user_id');
 		$this->db->insert('pms_lan', $_POST['surat']);
-		
-		for ($i=0;$i<sizeof($_POST['tarikan']['jenis_tarikan']);$i++){
-			if ($_POST['tarikan']['jumlah_tarikan'][$i]!='' )
-				{	$idreq=substr($this->uuid->v4(),(rand(2, 4)*(-1)))."PMSreq".substr($this->uuid->v4(),(rand(4, 6)*(-1)));
-					$sql="insert into pms_lan_request values ('".$idreq."',
-														  '".$_POST['surat']['id_pms_lan']."',
-														  '".$_POST['tarikan']['jenis_tarikan'][$i]."',
-														  '".$_POST['tarikan']['jumlah_tarikan'][$i]."',
-														  '".$_POST['tarikan']['titik_pertama_tarikan'][$i]."',
-														  '".$_POST['tarikan']['titik_kedua_tarikan'][$i]."',
-														  '".$_POST['tarikan']['keterangan'][$i]."')";								  
+		echo count($_POST['tarikan']['rooma']);
+		for ($i=0;$i<count($_POST['tarikan']['rooma']);$i++){
+			
+			if ($_POST['tarikan']['rooma'][$i]!='' )
+				{	
+					$idreq=substr($this->uuid->v4(),(rand(2, 4)*(-1)))."PMSreq".substr($this->uuid->v4(),(rand(4, 6)*(-1)));
+					$sql="insert into 
+							pms_lan_request  (
+									id_pms_lan_request,
+									id_pms_lan,
+									ruangana,
+									ruanganb,
+									koordinata,
+									koordinatb,
+									ua,
+									ub,
+									porta,
+									portb,
+									konektora,
+									konektorb
+								)
+					
+							values (
+									'".$idreq."',
+									'".$_POST['surat']['id_pms_lan']."',
+									'".$_POST['tarikan']['rooma'][$i]."',
+									'".$_POST['tarikan']['roomb'][$i]."',
+									'".$_POST['tarikan']['koordinata'][$i]."',
+									'".$_POST['tarikan']['koordinatb'][$i]."',
+									'".$_POST['tarikan']['ua'][$i]."',
+									'".$_POST['tarikan']['ub'][$i]."',
+									'".$_POST['tarikan']['porta'][$i]."',
+									'".$_POST['tarikan']['portb'][$i]."',
+									'".$_POST['tarikan']['konektora'][$i]."',
+									'".$_POST['tarikan']['konektorb'][$i]."')";								  
+					echo $sql;
 					$this->db->query($sql); 
-					}		
+					
+
+				}		
 		}
 		
-		if ($_POST['surat']['status_SIK']==null){
-			$idnotif=substr($this->uuid->v4(),(rand(3, 4)*(-1)))."not".substr($this->uuid->v4(),-5);
-			$sql="insert into user_notif values('".$idnotif."',
-												'21',
-												'<span>
-												 <span>Request Tarikan</span>
-												 <span class=\"time\">".$_POST['surat']['unit_kerja']."</span>
-												 </span>
-												 <span class=\"message\">".$_POST['surat']['keterangan_surat_masuk']."</span>',
-												 '".time()."',
-												 '0')";
-			$this->db->query($sql); 
-			// $this->controll->telegramnotif('group', "Work Order Masuk<br>id_pms_lan : <br>".$_POST['surat']['id_pms_lan'].
-													// "<br>WO/Sik : ".$_POST['surat']['nomor_SIK'].
-													// "<br>".$_POST['surat']['keterangan_surat_masuk'].
-													// "<br>Copas Text dibawah untuk Download WO","0");
-			// $this->controll->telegramnotif('group',"/getpmslan ".$_POST['surat']['id_pms_lan'],"0");
-		
-		}
+		// // if ($_POST['surat']['status_SIK']==null){
+		// // 	$idnotif=substr($this->uuid->v4(),(rand(3, 4)*(-1)))."not".substr($this->uuid->v4(),-5);
+		// // 	$sql="insert into user_notif values('".$idnotif."',
+		// // 										'21',
+		// // 										'<span>
+		// // 										 <span>Request Tarikan</span>
+		// // 										 <span class=\"time\">".$_POST['surat']['unit_kerja']."</span>
+		// // 										 </span>
+		// // 										 <span class=\"message\">".$_POST['surat']['keterangan_surat_masuk']."</span>',
+		// // 										 '".time()."',
+		// // 										 '0')";
+		// // 	$this->db->query($sql); 
+		// // }
 	
 		
-		$message .="with ip pmslan = ".$_POST['surat']['id_pms_lan'];
+		// $message .="with ip pmslan = ".$_POST['surat']['id_pms_lan'];
 	
-		$this->activity_m->writelog('pmslan',$message);
+		// $this->activity_m->writelog('pmslan',$message);
 	}
 	
 	public function update_by_case_m(){

@@ -4,6 +4,7 @@
 	</label>
 </div>
 <div class="col-md-12">
+	<input type="hidden" pattern="[a-zA-Z]" class="form-control dform required" id="id_pms_lan" value="" placeholder="required" required>
 	<div class="form-group col-sm-4 required">
 		<label class="control-label">Nomor Surat / Link Confluence</label>
 		<input type="text" pattern="[a-zA-Z]" class="form-control dform required" id="nomor_surat_masuk" value="" placeholder="required" required>
@@ -103,8 +104,9 @@
 	var ct=0;
 
 	function formact() {
-		var room1='<select class="form-control" id="room1_'+ct+'">';
-		var	room2='<select class="form-control" id="room2_'+ct+'">';
+		
+		var room1=`<select onchange="setlabel('`+ ct +`');" class="form-control" id="rooma_`+ct+`">`;
+		var	room2=`<select onchange="setlabel('`+ ct +`');" class="form-control" id="roomb_`+ct+`">`;
 		var address="./pmslan/get_room";
 		var data1={'asset_dc' : $('#asset_dc').val()};
 		var room = sendajaxreturn(data1,address,'json');
@@ -115,21 +117,22 @@
 		room1 +='</select>';
 		room2 +='</select>';
 		$("#table-pmslan").find('tbody').append(`<tr id='tr_`+ct+`'><td>`+ (ct+1) +`</td>
-													<td>`+room1+`</td>
-													<td><input type="text" class="form-control required" id="koordinata_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" class="form-control required" id="ua_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" class="form-control required" id="porta_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" class="form-control required" id="konektora_`+ct+`" value="" placeholder="required" required></td>
-													<td>`+room2+`</td>
-													<td><input type="text" class="form-control required" id="koordinatb_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" class="form-control required" id="ub_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" class="form-control required" id="portb_`+ct+`" value="" placeholder="required" required></td>
-													<td><input type="text" class="form-control required" id="konektorb_`+ct+`" value="" placeholder="required" required></td>
-													<td>GN41.H11.13.fe 0/19 - GN41.C4.24.fe 0/10</td>
+													<td id="troom_`+ct+`">`+room1+`</td>
+													<td id="tkoordinata_`+ct+`" ><input onchange="setlabel('`+ct+`');" type="text" class="form-control required" id="koordinata_`+ct+`" value="" placeholder="required" required></td>
+													<td id="tua_`+ct+`"><input onchange="setlabel('`+ct+`');" type="text" class="form-control required" id="ua_`+ct+`" value="" placeholder="required" required></td>
+													<td id="tporta_`+ct+`"><input onchange="setlabel('`+ct+`');" type="text" class="form-control required" id="porta_`+ct+`" value="" placeholder="required" required></td>
+													<td id="tkonektora_`+ct+`"><input onchange="setlabel('`+ct+`');" type="text" class="form-control required" id="konektora_`+ct+`" value="" placeholder="required" required></td>
+													<td id="troomb_`+ct+`">`+room2+`</td>
+													<td id="tkoordinatb_`+ct+`"><input onchange="setlabel('`+ct+`');" type="text" class="form-control required" id="koordinatb_`+ct+`" value="" placeholder="required" required></td>
+													<td id="tub_`+ct+`"><input onchange="setlabel('`+ct+`');" type="text" class="form-control required" id="ub_`+ct+`" value="" placeholder="required" required></td>
+													<td id="tportb_`+ct+`"><input onchange="setlabel('`+ct+`');" type="text" class="form-control required" id="portb_`+ct+`" value="" placeholder="required" required></td>
+													<td id="tkonektorb_`+ct+`"><input onchange="setlabel('`+ct+`');" type="text" class="form-control required" id="konektorb_`+ct+`" value="" placeholder="required" required></td>
+													<td id="label_`+ct+`"></td>
 													<td><input type="text" class="form-control required" id="keterangan_`+ct+`" value="" placeholder="required" required></td>
 													<td><button class="btn btn-warning waves-effect waves-light btn-sm" onclick="minform('`+ ct +`');" type="button"><i class="fa fa-close"></i></button></td></tr>`);
+		setlabel(ct);
 		ct++;
-		}
+	}
 	
 	
 		
@@ -137,4 +140,64 @@
 			$('#tr_'+id).remove();
 		}
 
+	function setlabel(i=null){
+		var kabela=$("#rooma_"+i).val() + '.' + $("#koordinata_"+i).val() + '.' + $("#ua_"+i).val() + '.' + $("#porta_"+i).val();
+		var kabelb=$("#roomb_"+i).val() + '.' + $("#koordinatb_"+i).val() + '.' + $("#ub_"+i).val() + '.' + $("#portb_"+i).val();
+		document.getElementById("label_"+i).innerHTML = kabela + ' - ' + kabelb ; 
+	}
+
+	function submitdata(){
+		var data1={
+					'id_pms_lan'  : $('#id_pms_lan').val(),
+					'nomor_surat_masuk'  : $('#nomor_surat_masuk').val(),
+					// 'tanggal_surat_masuk' : $('#tanggal_surat_masuk').val(),
+					// 'keterangan_surat_masuk' : $('#keterangan_surat_masuk').val(),
+					// 'unit_kerja' : $('#unit_kerja').val(),
+					// 'nomor_SIK' : $('#nomor_SIK').val(),
+					// 'kategori' : $('#kategori').val(),
+					// 'tanggal_SIK' : $('#tanggal_SIK').val(),
+					// 'SLA' : $('#SLA').val(),
+					// 'rekanan_SIK' : $('#rekanan_SIK').val(),
+		}
+
+		var data2={
+							'rooma' : [],
+							'roomb' : [],
+							'koordinata' : [],
+							'koordinatb' : [],
+							'ua' : [],
+							'ub' : [],
+							'porta' : [],
+							'portb' : [],
+							'konektora' : [],
+							'konektorb' : [],
+						}
+
+		for (var i=0;i<ct;i++){
+							data2['rooma'].push($('#rooma_'+i).val());
+							data2['roomb'].push($('#roomb_'+i).val());
+							data2['koordinata'].push($('#koordinata_'+i).val());
+							data2['koordinatb'].push($('#koordinatb_'+i).val());
+							data2['ua'].push($('#ua_'+i).val());
+							data2['ub'].push($('#ub_'+i).val());
+							data2['porta'].push($('#porta_'+i).val());
+							data2['portb'].push($('#portb_'+i).val());
+							data2['konektora'].push($('#konektora_'+i).val());
+							data2['konektorb'].push($('#konektorb_'+i).val());
+		}
+		var data={
+							'surat' : data1,
+							'tarikan' : data2
+						}
+
+		$.ajax({ 
+			type:"POST",
+			url: "./pmslan/input_request_tarikan",
+			data: data,
+			success:function(msg){
+				$('.result').html(msg);
+				alert('Input Sukses');
+			}
+	});
+}
 </script>

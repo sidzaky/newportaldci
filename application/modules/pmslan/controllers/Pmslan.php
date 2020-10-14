@@ -37,7 +37,6 @@ class Pmslan extends MX_Controller {
 
 	public function index() {
 		if (array_key_exists('pmslan',$this->session->userdata('module_access'))){
-				$data["pms_lan"] = $this->pmslan_m->select_all();
 				$data['content'] = 'pms_lan_list_v';
 				$data['headboard'] = 'pms lan list v';
 				$this->load->view('template',$data);
@@ -68,6 +67,13 @@ class Pmslan extends MX_Controller {
 		$data=$this->pmslan_m->get_room_m();
 		echo (json_encode($data));
 
+	}
+
+
+	public function showtable(){
+		$data["pms_lan"] = $this->pmslan_m->select_all();
+		$this->load->view('pms_lan_table_v',$data);
+		
 	}
 	////////////////////////////// GET ALL DATA///////////////////////////////
 	public function get_pmslan(){
