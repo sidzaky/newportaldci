@@ -80,18 +80,18 @@
 					<th rowspan="2">Action</th>
 				</tr>
 				<tr>
-					<th >ROOM</th>
-					<th >KOOR</th>
-					<th >RU</th>
-					<th >PORT</th>
-					<th >TYPE</th>
-					<th >KET</th>
-					<th >ROOM</th>
-					<th >KOOR</th>
-					<th >RU</th> 
-					<th >PORT</th>
-					<th >TYPE</th>
-					<th >KET</th>
+					<th>ROOM</th>
+					<th>KOOR</th>
+					<th>RU</th>
+					<th>PORT</th>
+					<th>TYPE</th>
+					<th>KETERANGAN</th>
+					<th>ROOM</th>
+					<th>KOOR</th>
+					<th>RU</th> 
+					<th>PORT</th>
+					<th>TYPE</th>
+					<th>KETERANGAN</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -125,23 +125,23 @@
 					</div>
 					<div class="col-sm-2">
 							<label class="control-label">Koordinat</label>
-							<input type="text" id="fkoora" class="form-control required" value="" required>
+							<input type="text" id="fkoora" class="form-control fform required" value="" required>
 					</div>
 					<div class="col-sm-2">
 							<label class="control-label">RU</label>
-							<input type="text" id="fua" class="form-control required" value="" required>
+							<input type="text" id="fua" class="form-control fform required" value="" required>
 					</div>
 					<div class="col-sm-2">
 							<label class="control-label">Port</label>
-							<input type="text" id="fporta" class="form-control required" value="" required>
+							<input type="text" id="fporta" class="form-control fform required" value="" required>
 					</div>
 					<div class="col-sm-3">
 							<label class="control-label">Tipe</label>
-							<input type="text" id="ftipea" class="form-control required" value="" required>
+							<input type="text" id="ftipea" class="form-control fform required" value="" required>
 					</div>
 					<div class="col-sm-12">
 							<label class="control-label">Keterangan</label>
-							<input type="text" id="fketa" class="form-control required" value="" required>
+							<input type="text" id="fketa" class="form-control fform required" value="" required>
 					</div>
 					</br></br>
 						<!--------------------- KOORDINAT KEDUA ------------------>
@@ -155,23 +155,23 @@
 					</div>
 					<div class="col-sm-2">
 							<label class="control-label">Koordinat</label>
-							<input type="text" id="fkoorb" class="form-control required" value="" required>
+							<input type="text" id="fkoorb" class="form-control fform required" value="" required>
 					</div>
 					<div class="col-sm-2">
 							<label class="control-label">RU</label>
-							<input type="text" id="fub" class="form-control required" value="" required>
+							<input type="text" id="fub" class="form-control fform required" value="" required>
 					</div>
 					<div class="col-sm-2">
 							<label class="control-label">Port</label>
-							<input type="text" id="fportb" class="form-control required" value="" required>
+							<input type="text" id="fportb" class="form-control fform required" value="" required>
 					</div>
 					<div class="col-sm-3">
 							<label class="control-label">Tipe</label>
-							<input type="text" id="ftipeb" class="form-control required" value="" required>
+							<input type="text" id="ftipeb" class="form-control fform required" value="" required>
 					</div>
 					<div class="col-sm-12">
 							<label class="control-label">Keterangan</label>
-							<input type="text" id="fketb" class="form-control required" value="" required>
+							<input type="text" id="fketb" class="form-control fform required" value="" required>
 					</div>
 				</div>					
 			</div>
@@ -200,20 +200,20 @@
 		if (i!=null){
 
 		}
-		var label=$('#frooma').val()+`.`+$('#fkoora').val()+`.`+$('#fua').val()+`.`+$('#fporta').val()+`.`+$('#ftipea').val()+` - `+$('#froomb').val()+`.`+$('#fkoorb').val()+`.`+$('#fub').val()+`.`+$('#fportb').val()+`.`+$('#ftipeb').val();
+		var label=$('#frooma').val()+`.`+$('#fkoora').val()+`.`+$('#fua').val()+`.`+$('#fporta').val()+` - `+$('#froomb').val()+`.`+$('#fkoorb').val()+`.`+$('#fub').val()+`.`+$('#fportb').val();
 		$("#table-pmslan").find('tbody').append(`<tr id='tr_`+ct+`'><td>`+ (ct+1) +`</td>
 													<td id="troom_`+ct+`">`+$('#frooma').val()+`<input type="hidden" class="form-control required" id="rooma_`+ct+`" value="`+$('#frooma').val()+`" placeholder="required" required></td>
 													<td id="tkoordinata_`+ct+`" >`+$('#fkoora').val()+`<input type="hidden" class="form-control required" id="koordinata_`+ct+`" value="`+$('#fkoora').val()+`" placeholder="required" required></td>
 													<td id="tua_`+ct+`">`+$('#fua').val()+`<input type="hidden" class="form-control required" id="ua_`+ct+`" value="`+$('#fua').val()+`" placeholder="required" required></td>
 													<td id="tporta_`+ct+`">`+$('#fporta').val()+`<input type="hidden" class="form-control required" id="porta_`+ct+`" value="`+$('#fporta').val()+`" placeholder="required" required></td>
 													<td id="tkonektora_`+ct+`">`+$('#ftipea').val()+`<input type="hidden" class="form-control required" id="konektora_`+ct+`" value="`+$('#ftipea').val()+`" placeholder="required" required></td>
-													<td id="tketa_`+ct+`">`+$('#fketa').val()+`<input type="hidden" class="form-control required" id="keta_`+ct+`" value="`+$('#fketa').val()+`" placeholder="required" required></td>
+													<td id="tketa_`+ct+`">`+$('#fketa').val()+`<input type="hidden" class="form-control required" id="keterangana_`+ct+`" value="`+$('#fketa').val()+`" placeholder="required" required></td>
 													<td id="troomb_`+ct+`">`+$('#froomb').val()+`<input type="hidden" class="form-control required" id="roomb_`+ct+`" value="`+$('#froomb').val()+`" placeholder="required" required></td>
 													<td id="tkoordinatb_`+ct+`">`+$('#fkoorb').val()+`<input type="hidden" class="form-control required" id="koordinatb_`+ct+`" value="`+$('#fkoorb').val()+`" placeholder="required" required></td>
 													<td id="tub_`+ct+`">`+$('#fub').val()+`<input type="hidden" class="form-control required" id="ub_`+ct+`" value="`+$('#fub').val()+`" placeholder="required" required></td>
 													<td id="tportb_`+ct+`">`+$('#fportb').val()+`<input type="hidden" class="form-control required" id="portb_`+ct+`" value="`+$('#fportb').val()+`" placeholder="required" required></td>
 													<td id="tkonektorb_`+ct+`">`+$('#ftipeb').val()+`<input type="hidden" class="form-control required" id="konektorb_`+ct+`" value="`+$('#ftipeb').val()+`" placeholder="required" required></td>
-													<td id="tketb_`+ct+`">`+$('#fketb').val()+`<input type="hidden" class="form-control required" id="ketb_`+ct+`" value="`+$('#fketb').val()+`" placeholder="required" required></td>
+													<td id="tketb_`+ct+`">`+$('#fketb').val()+`<input type="hidden" class="form-control required" id="keteranganb_`+ct+`" value="`+$('#fketb').val()+`" placeholder="required" required></td>
 													<td id="label_`+ct+`">`+ label +`</td>
 													<td>
 														<button class="btn btn-warning waves-effect waves-light btn-sm" onclick="formact('`+ ct +`');" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></button>
@@ -228,6 +228,22 @@
 
 	function formact(z=null) {
 		$('#modal-table').modal('show');
+
+		if (z!=null){
+			$("#fkoora").val($("#koordinata_"+z).val());
+			$("#fua").val($("#ua_"+z).val());
+			$("#fporta").val($("#porta_"+z).val());
+			$("#ftipea").val($("#konektora_"+z).val());
+			$("#fketa").val($("#keterangana_"+z).val());
+
+			$("#fkoorb").val($("#koordinatb_"+z).val());
+			$("#fub").val($("#ub_"+z).val());
+			$("#fportb").val($("#portb_"+z).val());
+			$("#ftipeb").val($("#konektorb_"+z).val());
+			$("#fketb").val($("#keteranganb_"+z).val());
+		}
+		else $(".fform").val("");
+
 		var room1=`<select class="form-control" id="frooma">`;
 		var	room2=`<select class="form-control" id="froomb">`;
 		var address="./pmslan/get_room";
