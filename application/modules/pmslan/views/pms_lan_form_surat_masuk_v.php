@@ -74,23 +74,24 @@
 			<thead>
 				<tr>
 					<th style="width:2%" rowspan="2">No</th>
-					<th colspan="5" align="center">koordinat 1</th>
-					<th colspan="5" align="center">Koordinat 2</th>
+					<th colspan="6"><p align="center">koordinat 1</p></th>
+					<th colspan="6"><p align="center">Koordinat 2</p></th>
 					<th rowspan="2">Label</th>
-					<th rowspan="2">Keterangan</th>
-					<th style="width: 2%" rowspan="2">Action</th>
+					<th rowspan="2">Action</th>
 				</tr>
 				<tr>
-					<th style="width: 17%">ROOM</th>
-					<th style="width: 5%">KOOR</th>
-					<th style="width: 5%">RU</th>
-					<th style="width: 6%">PORT</th>
-					<th style="width: 5%">TYPE</th>
-					<th style="width: 17%">ROOM</th>
-					<th style="width: 5%">KOOR</th>
-					<th style="width: 5%">RU</th> 
-					<th style="width: 6%">PORT</th>
-					<th style="width: 5%">TYPE</th>
+					<th >ROOM</th>
+					<th >KOOR</th>
+					<th >RU</th>
+					<th >PORT</th>
+					<th >TYPE</th>
+					<th >KET</th>
+					<th >ROOM</th>
+					<th >KOOR</th>
+					<th >RU</th> 
+					<th >PORT</th>
+					<th >TYPE</th>
+					<th >KET</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -175,7 +176,7 @@
 				</div>					
 			</div>
 			<div class="modal-footer d-flex justify-content-center">
-        		<button class="btn btn-default" onclick="formsubmitact();">Submit</button>
+        		<button class="btn btn-default" onclick="formsubmitact();$('#modal').hide();"  data-dismiss="modal"> Submit</button>
       		</div>
 		</div>
 	</div>
@@ -195,8 +196,10 @@
 		ct=0;
 	}
 
-	function formsubmitact(){
-		
+	function formsubmitact(i=null){
+		if (i!=null){
+
+		}
 		var label=$('#frooma').val()+`.`+$('#fkoora').val()+`.`+$('#fua').val()+`.`+$('#fporta').val()+`.`+$('#ftipea').val()+` - `+$('#froomb').val()+`.`+$('#fkoorb').val()+`.`+$('#fub').val()+`.`+$('#fportb').val()+`.`+$('#ftipeb').val();
 		$("#table-pmslan").find('tbody').append(`<tr id='tr_`+ct+`'><td>`+ (ct+1) +`</td>
 													<td id="troom_`+ct+`">`+$('#frooma').val()+`<input type="hidden" class="form-control required" id="rooma_`+ct+`" value="`+$('#frooma').val()+`" placeholder="required" required></td>
@@ -217,7 +220,6 @@
 														<button class="btn btn-danger waves-effect waves-light btn-sm" onclick="minform('`+ ct +`');" type="button"><i class="fa fa-close" aria-hidden="true"></i></button>
 													</td>
 												</tr>`);
-		setlabel(ct);
 		ct++;
 	}
 
