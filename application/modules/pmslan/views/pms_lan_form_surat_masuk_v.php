@@ -69,7 +69,7 @@
 </div>
 <div class="col-md-12">
 	<div class="form-group required">
-	<button class="btn btn-success waves-effect waves-light btn-sm" data-toggle="modal" data-target="#modal-table" onclick="formact();" type="button"><i class="fa fa-plus"></i> Tambah</button>
+	<button class="btn btn-success waves-effect waves-light btn-sm" onclick="formact();" type="button"><i class="fa fa-plus"></i> Tambah</button>
 		<table id="table-pmslan" class="table-striped table-bordered" width="100%">
 			<thead>
 				<tr>
@@ -176,7 +176,7 @@
 				</div>					
 			</div>
 			<div class="modal-footer d-flex justify-content-center">
-        		<button class="btn btn-default" onclick="formsubmitact();$('#modal').hide();"  data-dismiss="modal"> Submit</button>
+        		<button class="btn btn-default" onclick="formsubmitact();"> Submit</button>
       		</div>
 		</div>
 	</div>
@@ -216,24 +216,26 @@
 													<td id="tketb_`+ct+`">`+$('#fketb').val()+`<input type="hidden" class="form-control required" id="ketb_`+ct+`" value="`+$('#fketb').val()+`" placeholder="required" required></td>
 													<td id="label_`+ct+`">`+ label +`</td>
 													<td>
-														<button class="btn btn-warning waves-effect waves-light btn-sm" onclick="editform('`+ ct +`');" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></button>
+														<button class="btn btn-warning waves-effect waves-light btn-sm" onclick="formact('`+ ct +`');" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></button>
 														<button class="btn btn-danger waves-effect waves-light btn-sm" onclick="minform('`+ ct +`');" type="button"><i class="fa fa-close" aria-hidden="true"></i></button>
 													</td>
 												</tr>`);
 		ct++;
+		$('#modal-table').modal('hide');
 	}
 
 
 
-	function formact() {
+	function formact(z=null) {
+		$('#modal-table').modal('show');
 		var room1=`<select class="form-control" id="frooma">`;
 		var	room2=`<select class="form-control" id="froomb">`;
 		var address="./pmslan/get_room";
 		var data1={'asset_dc' : $('#asset_dc').val()};
 		var room = sendajaxreturn(data1,address,'json');
 		for (var i=0;i<room.length;i++){
-			room1 +='<option value="'+room[i].kode +'"> '+room[i].keterangan+'</option>';
-			room2 +='<option value="'+room[i].kode +'"> '+room[i].keterangan+'</option>';
+			room1 +='<option value="'+room[i].kode +'" '+ ( z != null ? ( $('#rooma_'+z).val() == room[i].kode ? 'selected' : '') : '' )+'> '+room[i].keterangan+'</option>';
+			room2 +='<option value="'+room[i].kode +'" '+ ( z != null ? ( $('#roomb_'+z).val() == room[i].kode ? 'selected' : '') : '' )+'> '+room[i].keterangan+'</option>';
 		}
 		room1 +='</select>';
 		room2 +='</select>';
