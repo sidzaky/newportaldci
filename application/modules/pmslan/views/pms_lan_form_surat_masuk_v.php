@@ -11,8 +11,13 @@
 	</div> 
 	<div class="form-group col-sm-4 required">
 		<label class="control-label">Tanggal Masuk</label>
-		<input type="text" pattern="[a-zA-Z]" class="form-control dform required" id="tanggal_surat_masuk" value="" placeholder="required" required>
+		<div class="datepicker input-group date" data-date-format="dd-mm-yyyy">
+			<input class="form-control" type="text" id="tanggal_surat_masuk" readonly />
+			<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+		</div>
 	</div>  
+	
+
 	<div class="form-group col-sm-4 required">
 		<label class="control-label">Site</label>
 		<select class="form-control"  onchange="clrt();" id="asset_dc">
@@ -188,7 +193,14 @@
 
 
 <script>
-
+	$( document ).ready(function() {
+		$(".datepicker").datepicker({ 
+			autoclose: true,
+			format : "dd-mm-yyyy",
+			todayHighlight: true
+		}).datepicker('update', new Date());
+	});
+	
 	var ct=0;
 	function clrt(){
 		for (var i=0;i<ct;i++){
@@ -200,24 +212,24 @@
 	function formsubmitact(){
 		var r = ($("#fedit").val()!="" ? $("#fedit").val() : ct);
 		var label=$('#frooma').val()+`.`+$('#fkoora').val()+`.`+$('#fua').val()+`.`+$('#fporta').val()+` - `+$('#froomb').val()+`.`+$('#fkoorb').val()+`.`+$('#fub').val()+`.`+$('#fportb').val();
-		var tables=`<td>`+ ( r == ct ? r + 1 : r  ) +`</td>
-													<td id="troom_`+ r +`">`+$('#frooma').val()+`<input type="hidden" class="form-control required" id="rooma_`+ r +`" value="`+$('#frooma').val()+`" placeholder="required" required></td>
-													<td id="tkoordinata_`+r+`" >`+$('#fkoora').val()+`<input type="hidden" class="form-control required" id="koordinata_`+r+`" value="`+$('#fkoora').val()+`" placeholder="required" required></td>
-													<td id="tua_`+r+`">`+$('#fua').val()+`<input type="hidden" class="form-control required" id="ua_`+r+`" value="`+$('#fua').val()+`" placeholder="required" required></td>
-													<td id="tporta_`+r+`">`+$('#fporta').val()+`<input type="hidden" class="form-control required" id="porta_`+r+`" value="`+$('#fporta').val()+`" placeholder="required" required></td>
-													<td id="tkonektora_`+r+`">`+$('#ftipea').val()+`<input type="hidden" class="form-control required" id="konektora_`+r+`" value="`+$('#ftipea').val()+`" placeholder="required" required></td>
-													<td id="tketa_`+r+`">`+$('#fketa').val()+`<input type="hidden" class="form-control required" id="keterangana_`+r+`" value="`+$('#fketa').val()+`" placeholder="required" required></td>
-													<td id="troomb_`+r+`">`+$('#froomb').val()+`<input type="hidden" class="form-control required" id="roomb_`+r+`" value="`+$('#froomb').val()+`" placeholder="required" required></td>
-													<td id="tkoordinatb_`+r+`">`+$('#fkoorb').val()+`<input type="hidden" class="form-control required" id="koordinatb_`+r+`" value="`+$('#fkoorb').val()+`" placeholder="required" required></td>
-													<td id="tub_`+r+`">`+$('#fub').val()+`<input type="hidden" class="form-control required" id="ub_`+r+`" value="`+$('#fub').val()+`" placeholder="required" required></td>
-													<td id="tportb_`+r+`">`+$('#fportb').val()+`<input type="hidden" class="form-control required" id="portb_`+r+`" value="`+$('#fportb').val()+`" placeholder="required" required></td>
-													<td id="tkonektorb_`+r+`">`+$('#ftipeb').val()+`<input type="hidden" class="form-control required" id="konektorb_`+r+`" value="`+$('#ftipeb').val()+`" placeholder="required" required></td>
-													<td id="tketb_`+r+`">`+$('#fketb').val()+`<input type="hidden" class="form-control required" id="keteranganb_`+r+`" value="`+$('#fketb').val()+`" placeholder="required" required></td>
-													<td id="label_`+r+`">`+ label +`</td>
-													<td>
-														<button class="btn btn-warning waves-effect waves-light btn-sm" onclick="formact('`+ r +`');" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></button>
-														<button class="btn btn-danger waves-effect waves-light btn-sm" onclick="minform('`+ r +`');" type="button"><i class="fa fa-close" aria-hidden="true"></i></button>
-													</td>`;
+		var tables=`<td>`+ ( r == ct ? (r+1) : r  ) +`</td>
+					<td id="troom_`+ r +`">`+$('#frooma').val()+`<input type="hidden" class="form-control required" id="rooma_`+ r +`" value="`+$('#frooma').val()+`" placeholder="required" required></td>
+					<td id="tkoordinata_`+r+`" >`+$('#fkoora').val()+`<input type="hidden" class="form-control required" id="koordinata_`+r+`" value="`+$('#fkoora').val()+`" placeholder="required" required></td>
+					<td id="tua_`+r+`">`+$('#fua').val()+`<input type="hidden" class="form-control required" id="ua_`+r+`" value="`+$('#fua').val()+`" placeholder="required" required></td>
+					<td id="tporta_`+r+`">`+$('#fporta').val()+`<input type="hidden" class="form-control required" id="porta_`+r+`" value="`+$('#fporta').val()+`" placeholder="required" required></td>
+					<td id="tkonektora_`+r+`">`+$('#ftipea').val()+`<input type="hidden" class="form-control required" id="konektora_`+r+`" value="`+$('#ftipea').val()+`" placeholder="required" required></td>
+					<td id="tketa_`+r+`">`+$('#fketa').val()+`<input type="hidden" class="form-control required" id="keterangana_`+r+`" value="`+$('#fketa').val()+`" placeholder="required" required></td>
+					<td id="troomb_`+r+`">`+$('#froomb').val()+`<input type="hidden" class="form-control required" id="roomb_`+r+`" value="`+$('#froomb').val()+`" placeholder="required" required></td>
+					<td id="tkoordinatb_`+r+`">`+$('#fkoorb').val()+`<input type="hidden" class="form-control required" id="koordinatb_`+r+`" value="`+$('#fkoorb').val()+`" placeholder="required" required></td>
+					<td id="tub_`+r+`">`+$('#fub').val()+`<input type="hidden" class="form-control required" id="ub_`+r+`" value="`+$('#fub').val()+`" placeholder="required" required></td>
+					<td id="tportb_`+r+`">`+$('#fportb').val()+`<input type="hidden" class="form-control required" id="portb_`+r+`" value="`+$('#fportb').val()+`" placeholder="required" required></td>
+					<td id="tkonektorb_`+r+`">`+$('#ftipeb').val()+`<input type="hidden" class="form-control required" id="konektorb_`+r+`" value="`+$('#ftipeb').val()+`" placeholder="required" required></td>
+					<td id="tketb_`+r+`">`+$('#fketb').val()+`<input type="hidden" class="form-control required" id="keteranganb_`+r+`" value="`+$('#fketb').val()+`" placeholder="required" required></td>
+					<td id="label_`+r+`">`+ label +`</td>
+					<td>
+						<button class="btn btn-warning waves-effect waves-light btn-sm" onclick="formact('`+ r +`');" type="button"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></button>
+						<button class="btn btn-danger waves-effect waves-light btn-sm" onclick="minform('`+ r +`');" type="button"><i class="fa fa-close" aria-hidden="true"></i></button>
+					</td>`;
 												
 											
 		if ($("#fedit").val()!=""){

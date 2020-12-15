@@ -90,7 +90,9 @@ class Pmslan_m extends CI_Model
 									porta,
 									portb,
 									konektora,
-									konektorb
+									konektorb,
+									keterangana,
+									keteranganb
 								)
 					
 							values (
@@ -105,11 +107,11 @@ class Pmslan_m extends CI_Model
 									'".$_POST['tarikan']['porta'][$i]."',
 									'".$_POST['tarikan']['portb'][$i]."',
 									'".$_POST['tarikan']['konektora'][$i]."',
-									'".$_POST['tarikan']['konektorb'][$i]."')";								  
-					echo $sql;
+									'".$_POST['tarikan']['konektorb'][$i]."',
+									'".$_POST['tarikan']['keterangana'][$i]."',
+									'".$_POST['tarikan']['keteranganb'][$i]."'
+									)";								  
 					$this->db->query($sql); 
-					
-
 				}		
 		}
 		

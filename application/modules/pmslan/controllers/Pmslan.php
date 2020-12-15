@@ -54,10 +54,10 @@ class Pmslan extends MX_Controller {
 				$this->load->view('pms_lan_form_surat_masuk_v', $data);
 			} 
 			else {
+				
 				if ($_POST['surat']['id_pms_lan']==null) $this->pmslan_m->input_request_tarikan_m();
 				else $this->pmslan_m->update_request_tarikan_m();
 					$data['pms_lan']=$this->pmslan_m->select_all();
-					
 					$data['con'] = $this;
 					$this->load->view('pms_lan_table_v',$data);
 			}
